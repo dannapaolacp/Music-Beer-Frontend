@@ -1,0 +1,192 @@
+.menu_side {
+  position: relative;
+  width: 25%;
+  height: 90%;
+  /* border: 1px solid white; */
+  background-color: black;
+  box-shadow: 5px 0px 2px black;
+  color: white;
+  width: 75%;
+  background: black;
+}
+
+.App_body .Customer_app_content_body .Results {
+  background-color: black;
+  opacity: 90%;
+  border-radius: 15px;
+  height: 100%;
+  width: 600px;
+}
+
+.App_body .Customer_app_content_body .Results .Video_list {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.App_body .Customer_app_content_body .Results .Video_list::-webkit-scrollbar {
+  width: 15px;
+}
+
+.App_body
+  .Customer_app_content_body
+  .Results
+  .Video_list::-webkit-scrollbar-thumb {
+  /* background: linear-gradient(to bottom, #0073e6, #9b59b6); */
+  border-radius: 15px;
+  background-color: aqua;
+  border: 2px solid rgb(135, 38, 125);
+}
+
+.App_body
+  .Customer_app_content_body
+  .Results
+  .Video_list::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(135, 38, 125);
+  border: 2px solid aqua;
+}
+
+.App_body
+  .Customer_app_content_body
+  .Results
+  .Video_list
+  .Video_item:nth-child(1) {
+  border: none;
+}
+
+.App_body
+  .Customer_app_content_body
+  .Results
+  .Video_list
+  .Video_item:last-child {
+  border: 1px solid transparent;
+}
+
+.App_body .Customer_app_content_body .Results .Video_list .Video_item {
+  color: aqua;
+  height: 80px;
+  width: 585px;
+  /* margin-left: 40px; */
+  display: flex;
+  /* justify-content: space-between; */
+  text-align: left;
+  border: 1px solid rgb(135, 38, 125);
+}
+
+/* .App_body
+  .Customer_app_content_body
+  .Results
+  .Video_list
+  .Video_item
+  .video_select {
+  margin-right: 5px;
+} */
+
+.App_body
+  .Customer_app_content_body
+  .Results
+  .Video_list
+  .Video_item
+  .video_img
+  img {
+  height: 78px;
+  border-radius: 15px;
+}
+
+.App_body
+  .Customer_app_content_body
+  .Results
+  .Video_list
+  .Video_item
+  .video_name {
+  height: 80px;
+  width: 450px;
+  margin-left: 0;
+  border: 10px solid transparent;
+}
+
+.App_body
+  .Customer_app_content_body
+  .Results
+  .Video_list
+  .Video_item
+  .video_select {
+  width: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.App_body .Customer_app_content_body .Results .Video_list .Video_item:hover {
+  color: aqua;
+  background-color: rgb(135, 38, 125);
+  opacity: 90%;
+  border: 1px solid aqua;
+}
+
+.App_body .Customer_app_content_body .Results .Send_button {
+  text-align: right;
+  height: 40px;
+}
+
+.App_body .Customer_app_content_body .Results .Send_button .btn_send {
+  color: aqua;
+  background: none;
+  margin-top: 4px;
+  width: 100px;
+  height: 30px;
+  border: 2px solid aqua;
+  outline: none;
+  line-height: 2px;
+  text-align: center;
+  margin-right: 15px;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: 0.3s linear;
+}
+
+.App_body .Customer_app_content_body .Results .Send_button .btn_send:hover {
+  border: 2px solid aqua;
+  background: rgb(135, 38, 125);
+  color: aqua;
+}
+
+.search_container {
+  margin-top: 40px;
+  width: 585px;
+  display: flex;
+  justify-content: center;
+  border-radius: 15px;
+  background: white;
+  border: 1px solid gray;
+}
+
+.search_container .input_search {
+  display: flex;
+  justify-content: center;
+  border-radius: 15px;
+}
+
+.search_container .input_search input {
+  border-radius: 15px;
+  border: none;
+  margin-top: 1px;
+  width: 400px;
+}
+
+.search_container .search_btn .btn_magnifying {
+  width: 50px;
+  height: 39px;
+  border-radius: 15px;
+  border: none;
+  background: none;
+  color: black;
+  background: white;
+  opacity: 90%;
+}
+
+.search_container .search_btn .btn_magnifying:hover {
+  background: black;
+  opacity: 85%;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s linear;
+}

@@ -1,0 +1,153 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;1,100;1,200&display=swap");
+
+.App-header {
+  font-family: "Poppins", sans-serif;
+}
+
+.App_body {
+  background-color: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 20px;
+  color: white;
+}
+
+.App_body .App_video {
+  /* display: flex;
+    justify-content: center;
+    align-items: center; */
+}
+
+.App_body .App_content_body .App_playlist_content {
+  background-color: black;
+  opacity: 90%;
+  color: aqua;
+  width: 640px;
+}
+
+.App_body .App_content_body .App_playlist_content .playlist_buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: blueviolet;
+  margin-top: -15px;
+  padding: 20px;
+}
+
+.playlist_buttons button {
+  width: 130px;
+  height: 30px;
+  border: 2px solid aqua;
+  outline: none;
+  border-radius: 20px;
+  background: none;
+  color: aqua;
+  cursor: pointer;
+  transition: 0.3s linear;
+}
+
+.playlist_buttons button:hover {
+  border: 2px solid aqua;
+  background: aqua;
+  color: white;
+}
+
+.App_playlist {
+  height: 100%;
+}
+
+.App_body
+  .App_content_body
+  .App_playlist_content
+  .App_playlist
+  .App_playlist_index {
+  background-color: black;
+  max-height: 380px;
+  overflow-y: auto;
+}
+
+.App_playlist .App_playlist_index::-webkit-scrollbar {
+  width: 15px;
+}
+
+.App_playlist .App_playlist_index::-webkit-scrollbar-thumb {
+  /* background: linear-gradient(to bottom, #0073e6, #9b59b6); */
+  border-radius: 15px;
+  background-color: aqua;
+  border: 2px solid rgb(135, 38, 125);
+}
+
+.App_playlist .App_playlist_index::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(135, 38, 125);
+  border: 2px solid aqua;
+}
+
+.App_music_playlist {
+  background-color: black;
+  color: aqua;
+  height: 50px;
+  /* margin-left: 40px; */
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid rgb(135, 38, 125);
+}
+
+.App_music_playlist:hover {
+  color: aqua;
+  background-color: rgb(135, 38, 125);
+  opacity: 90%;
+  border: 1px solid aqua;
+}
+
+.App_music_playlist .first {
+  display: flex;
+  justify-content: space-between;
+}
+
+.App_music_playlist .first .music_options {
+  display: flex;
+  justify-content: space-between;
+  /* border: 2px solid white; */
+  margin-top: 10px;
+  width: 60px;
+}
+
+.App_music_playlist .first .table_name {
+  /* border: 2px solid white; */
+  width: 60px;
+}
+
+.App_music_playlist .first .music_name {
+  /* border: 2px solid white; */
+  width: 450px;
+}
+
+.App_music_playlist .second {
+  margin-top: 10px;
+  /* border: 2px solid white; */
+}
+
+.App_music_playlist .music_options button {
+  width: 25px;
+  height: 25px;
+  border: 1px solid aqua;
+  outline: none;
+  border-radius: 10px;
+  background: none;
+  color: aqua;
+  cursor: pointer;
+  transition: 0.3s linear;
+  display: flex;
+  align-items: center;
+}
+
+.App_music_playlist .music_options {
+  /* border: 2px solid white; */
+}
+
+.App_music_playlist button:hover {
+  border: 2px solid aqua;
+  background: aqua;
+  color: white;
+}

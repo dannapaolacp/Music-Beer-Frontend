@@ -1,0 +1,29 @@
+.create_btn, .back_btn {
+  color: rgb(84, 211, 169);
+  background: none;
+  width: 100px;
+  height: 30px;
+  /* position: absolute;
+    margin-down: 3px;
+    right: 20px;
+    top: 200px; */
+  border: 2px solid rgb(84, 211, 169);
+  outline: none;
+  align-items: center;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: .3s linear;
+}
+
+.create_btn:hover , .back_btn:hover {
+  border: 2px solid rgb(84, 211, 169);
+  background: rgb(84, 211, 169);
+  color: white;
+}
+
+.card_profile .button{
+  /* background-color: black; */
+  display: flex;
+  justify-content: space-around;
+}
+

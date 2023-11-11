@@ -1,0 +1,28 @@
+.carousel {
+  max-width: 800px; /* Ancho máximo del carrusel */
+}
+.carousel .slider-wrapper {
+  height: 400px; /* Altura del carrusel */
+  border: none;
+}
+
+.carousel .slide img {
+  height: 400px;
+  border: 1px solid transparent; /* Agrega un borde a las imágenes */
+}
+
+.carousel .control-dots .dot {
+  background: white; /* Color de fondo de los puntos de navegación */
+}
+
+.carousel .control-dots .dot.selected {
+  background: aqua;
+}
+
+.carousel .slide {
+  margin: 0px; /* Espaciado entre las imágenes */
+}
+
+.carousel .slide {
+  transition: transform 0.5s ease; /* Configura la transición entre las imágenes */
+}

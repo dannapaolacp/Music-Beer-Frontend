@@ -1,0 +1,99 @@
+.create_btn,
+.back_btn {
+  color: rgb(84, 211, 169);
+  background: none;
+  width: 100px;
+  height: 30px;
+  border: 2px solid rgb(84, 211, 169);
+  outline: none;
+  align-items: center;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: 0.3s linear;
+}
+
+.create_btn:hover,
+.back_btn:hover {
+  border: 2px solid rgb(84, 211, 169);
+  background: rgb(84, 211, 169);
+  color: white;
+}
+
+.card_consult_tables {
+  padding: 35px;
+  height: 400px;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 550px;
+  border-radius: 15px;
+  background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.card_consult_tables .button {
+  /* background-color: black; */
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.data_output_tables_content {
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  color: white;
+  max-height: 210px;
+  overflow-y: auto;
+}
+
+.data_output_tables_content::-webkit-scrollbar {
+  width: 15px;
+}
+
+.data_output_tables_content::-webkit-scrollbar-thumb {
+  /* background: linear-gradient(to bottom, #0073e6, #9b59b6); */
+  /* border-radius: 15px;
+    background-color: aqua;
+    border: 2px solid rgb(135, 38, 125); */
+  border-radius: 15px;
+  background-color: transparent;
+  border: 2px solid rgb(84, 211, 169);
+}
+
+.data_output_tables_content::-webkit-scrollbar-thumb:hover {
+  /* background-color: rgb(135, 38, 125);
+    border: 2px solid aqua; */
+  background-color: rgb(84, 211, 169);
+}
+
+/* .data_output_content .user_id {
+    margin-top: 5px;
+} */
+
+.data_output_tables_content .user_id,
+.user_name,
+.user_password {
+  margin-bottom: 20px;
+}
+
+th {
+  color: rgb(84, 211, 169);
+  text-align: center;
+  vertical-align: middle;
+}
+
+td {
+  text-align: center;
+}
+
+.eye {
+  background-color: transparent;
+  color: rgb(84, 211, 169);
+  border: none;
+}
+
+.trash_can {
+  background-color: transparent;
+  color: white;
+  border: none;
+}
