@@ -1,0 +1,202 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;1,100;1,200&display=swap");
+
+.menu-header {
+  position: relative;
+}
+
+.header-icons {
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+}
+
+.user-function {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 45%;
+  color: aqua;
+}
+
+.user-function label {
+  font-family: "Poppins", sans-serif;
+  background-image: linear-gradient(90deg, #3498db, #9b59b6);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.menu-button {
+  font-size: 24px;
+  cursor: pointer;
+  text-align: left;
+  border: none;
+  width: 200px;
+  background-color: white;
+  transition:
+    transform 0.3s ease,
+    margin-left 0.3s ease;
+  height: 60px;
+  position: relative;
+  /* Agrega una transición para que sea animado */
+}
+
+.list-icon button {
+  color: black;
+  margin-top: -15px;
+}
+
+@font-face {
+  font-family: "Ravie";
+  src: url("../assets/fonts/Ravie.otf") format("truetype");
+}
+
+.music-icon {
+  margin-right: 100px;
+  background-color: black;
+  opacity: 90%;
+  font-family: "Ravie", sans-serif;
+  font-size: 12px;
+  color: aqua;
+  text-align: center;
+  width: 120px;
+  height: 80px;
+  position: absolute;
+  right: 100px;
+  border-radius: 15px;
+  border: 1px solid aqua;
+}
+
+.menu-dropdown {
+  display: none;
+  position: absolute;
+  top: 30px;
+  left: 0;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  width: 250px;
+  width: 0;
+  overflow: hidden;
+  transition: width 0.3s ease;
+  /* Agrega una transición para que sea animado */
+}
+
+.menu-dropdown.visible {
+  display: block;
+  height: 800px;
+  /* height: 100vh; */
+  height: 95.5%;
+  color: black;
+  background-color: white;
+  width: 200px;
+  opacity: 90%;
+}
+
+/* .menu-button.menu-visible {
+  transform: translateX(365px); Ajusta la anchura del menú según tus preferencias
+  margin-left: -200px; Ajusta el margen izquierdo según tus preferencias
+} */
+
+.menu-item:nth-child(1) {
+  padding: 15px;
+  text-decoration: none;
+  color: black;
+  display: block;
+  border-width: 0;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  justify-content: center;
+}
+
+.menu-item {
+  padding: 15px;
+  text-decoration: none;
+  color: black;
+  display: block;
+  border-width: 0;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+}
+
+.menu-item:nth-child(1):hover {
+  color: black;
+  background-color: white;
+  opacity: 100%;
+}
+
+.menu-item:hover {
+  color: aqua;
+  background-color: black;
+  opacity: 90%;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  /* Ajusta según sea necesario */
+}
+
+.search-container input {
+  margin-right: 10px;
+  /* Espaciado entre el cuadro de búsqueda y el botón */
+}
+
+.user_icon {
+  font-size: 2em;
+}
+
+/*submenu*/
+.submenu {
+  transition:
+    transform 0.3s ease,
+    margin-left 0.3s ease;
+  position: relative;
+  /* Agrega una transición para que sea animado */
+}
+
+.submenu-dropdown {
+  display: none;
+  position: absolute;
+  margin-left: 200px;
+  margin-top: 142px;
+  background-color: black;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  width: 250px;
+  width: 0;
+  overflow: hidden;
+  transition: width 0.3s ease;
+  /* Agrega una transición para que sea animado */
+}
+
+.submenu-dropdown.visible {
+  display: block;
+  height: 108px;
+  left: 0px;
+  color: black;
+  background-color: white;
+  width: 200px;
+  opacity: 90%;
+}
+
+.submenu-item {
+  padding: 15px;
+  text-decoration: none;
+  color: black;
+  display: block;
+  border-width: 0;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+}
+
+.submenu-item:hover {
+  color: aqua;
+  background-color: black;
+  opacity: 90%;
+}

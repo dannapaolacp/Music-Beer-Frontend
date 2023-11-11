@@ -1,0 +1,147 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;1,100;1,200&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;1,100;1,200&display=swap");
+
+.App-home {
+  font-family: "Poppins", sans-serif;
+  /* border: 2px solid black; */
+  position: absolute;
+  width: 100%;
+  height: 100% !important;
+}
+
+.homepage-header {
+  background: white;
+  padding: 10px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+}
+
+.site_title {
+  font-family: "Poppins", sans-serif;
+  background-image: linear-gradient(90deg, #3498db, #9b59b6);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  font-weight: bold;
+  margin-left: 20px;
+}
+
+.site_options {
+  margin-right: 20px;
+}
+
+.site_options nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.site_options nav li {
+  margin: 0 20px;
+}
+
+.site_options nav a {
+  text-decoration: none;
+  color: black;
+  font-size: 16px;
+}
+
+.site_options nav a:hover {
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
+  background-image: linear-gradient(90deg, #3498db, #9b59b6);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  font-weight: bold;
+}
+
+.site_options nav li i:hover {
+  color: aqua;
+}
+
+.App_content_home {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  height: 100%;
+  /* border: 2px solid red; */
+  background-color: rgb(0, 0, 0, 0.5);
+}
+
+@font-face {
+  font-family: "Ravie";
+  src: url("../assets/fonts/Ravie.otf") format("truetype");
+}
+
+.card_home {
+  padding: 35px;
+  margin-top: -20px;
+  margin-bottom: auto;
+  height: 100%;
+  /* width: 400px; */
+  /* border: 2px solid black; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card_home h1 {
+  font-family: "Ravie", sans-serif;
+  margin-top: -50px;
+  background-image: linear-gradient(90deg, black, black);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  /* margin: 30px 0; */
+}
+
+.card_home .text_border {
+  text-shadow: 5px 5px 0 aqua;
+}
+
+.img_home {
+  border: 2px solid transparent;
+}
+
+.text_home {
+  /* border: 2px solid black; */
+  text-align: justify;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.text_home p {
+  color: white;
+  font-weight: bold;
+}
+
+.text_home .start_btn {
+  /* color: rgb(84, 211, 169); */
+  color: aqua;
+  background: none;
+  width: 100px;
+  height: 30px;
+  margin-top: 20px;
+  /* border: 2px solid rgb(84, 211, 169); */
+  border: 2px solid aqua;
+  outline: none;
+  align-items: center;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: 0.3s linear;
+}
+
+.text_home .start_btn:hover {
+  /* border: 2px solid rgb(84, 211, 169);
+  background: rgb(84, 211, 169); */
+  border: 2px solid aqua;
+  background: aqua;
+  color: white;
+}
