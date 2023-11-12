@@ -1,6 +1,20 @@
-# Music-Beer-Frontend
+# Welcome to the official Music Beer frontend repository! 🎶
 
-Desarrollo de la interfaz de usuario del proyecto Music Beer
+**Installation:**
+
+You must have cloned the Music-Beer-Backend project. To have the official repository, you can click [Here](https://github.com/dannapaolacp/Music-Beer-Backend "Here")
+
+## Introduction:
+
+Music Beer was born from the identification of a solution in the musical management of a gastrobar.
+
+**Main functions:**
+
+1. Provide song requests to establishment customers. 🔍🤳🏻
+
+2. Provide music management to the employee in charge by modifying the playlist. 🧑‍💼⚙️
+
+3. Provide musical supervision of the management carried out by the employee to the administrator or owner of the establishment.🧐✔️
 
 # Getting Started with Create React App
 
