@@ -6,12 +6,14 @@ import { useDrag, useDrop, DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import "../css/sideMenusStyles.css";
 import "../css/listManagementStyles.css";
+import "../css/spinnerLoading.css";
 import "bootstrap/dist/css/bootstrap.css";
+import SpinnerLoading from "./SpinnerLoading";
 
 const ItemType = "MUSIC";
 
-const DraggableItem = ({ music, index, moveItem, extractVideoId }) => {
-  const [{ isDragging }, ref] = useDrag({
+const DraggableItem = ({ music, index, moveItem }) => {
+  const [, ref] = useDrag({
     type: ItemType,
     item: { index },
   });
@@ -26,36 +28,8 @@ const DraggableItem = ({ music, index, moveItem, extractVideoId }) => {
     },
   });
 
-  const [videoName, setVideoName] = useState(
-    "Nombre de la canción desconocido",
-  );
-  const [videoId, setVideoId] = useState(null);
-
-  useEffect(() => {
-    const extractVideoData = async () => {
-      try {
-        const videoId = extractVideoId(music.link);
-        const apiKey = "AIzaSyDGlwFZ-INUDovUHWOJ6MK9Uc19zOm6mMk";
-        const response = await axios.get(
-          `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&key=${apiKey}`,
-        );
-        const title = response.data.items[0].snippet.title;
-        setVideoName(title);
-        setVideoId(videoId);
-      } catch (error) {
-        console.error("Error fetching video data", error);
-        setVideoName("Nombre de la canción desconocido");
-      }
-    };
-
-    extractVideoData();
-  }, [music.link, extractVideoId]);
-
   return (
-    <div
-      ref={(node) => ref(drop(node))}
-      style={{ opacity: isDragging ? 0.5 : 1 }}
-    >
+    <div ref={(node) => ref(drop(node))} style={{ opacity: 1 }}>
       <div className="App_music_playlist">
         <div className="first">
           <a href={music.link}></a>
@@ -74,52 +48,29 @@ const DraggableItem = ({ music, index, moveItem, extractVideoId }) => {
           </div>
           &emsp;
           <div className="table_name">{music.table_name}</div>
-          <div className="music_name">{videoName}</div>
+          <div className="music_name">{music.name}</div>
         </div>
         <div className="second">
           <i className="bi bi-list"></i>
           &emsp;
         </div>
       </div>
-      {videoId && (
-        <div className="video">
-          <YouTube
-            videoId={videoId}
-            opts={{
-              height: "390",
-              width: "640",
-              playerVars: {
-                autoplay: 1,
-                key: "AIzaSyDGlwFZ-INUDovUHWOJ6MK9Uc19zOm6mMk",
-              },
-            }}
-          />
-        </div>
-      )}
     </div>
   );
 };
 
 export const EmployeeMenu = () => {
-  const [playlist, setPlaylist] = useState([]);
+  const [playlist, setPlaylist] = useState(() => {
+    const storedPlaylist = localStorage.getItem("playlist");
+    return storedPlaylist ? JSON.parse(storedPlaylist) : [];
+  });
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   const [menuVisible, setMenuVisible] = useState(false);
+  const [hasNewSongs, setHasNewSongs] = useState(false); // Nueva variable de estado
   const { user } = useParams();
-
-  //Nav to profile
   const EmployeeProfile = `/EmployeeMenu/${user}/Profile`;
 
-  const extractVideoId = (url) => {
-    const match = url.match(/[?&]v=([^?&]+)/);
-    return match ? match[1] : null;
-  };
-
   useEffect(() => {
-    const storedPlaylist = JSON.parse(localStorage.getItem("playlist"));
-    if (storedPlaylist) {
-      setPlaylist(storedPlaylist);
-    }
-
     const intervalId = setInterval(() => {
       const fetchUpdatedPlaylist = async () => {
         try {
@@ -128,10 +79,11 @@ export const EmployeeMenu = () => {
             (newSong) => !playlist.some((song) => song.id === newSong.id),
           );
           if (newSongs.length > 0) {
-            // Actualiza la lista con las nuevas canciones
+            // Solo actualiza la lista si hay nuevas canciones
             const updatedPlaylist = [...playlist, ...newSongs];
             setPlaylist(updatedPlaylist);
             localStorage.setItem("playlist", JSON.stringify(updatedPlaylist));
+            setHasNewSongs(true);
           }
         } catch (error) {
           console.error("Error fetching updated playlist", error);
@@ -139,10 +91,23 @@ export const EmployeeMenu = () => {
       };
 
       fetchUpdatedPlaylist();
-    }, 5000); // Actualiza cada 3 minutos, ajusta según tus necesidades
+    }, 5000); // Actualiza cada 5 segundos, ajusta según tus necesidades
 
     return () => clearInterval(intervalId); // Limpia el intervalo cuando el componente se desmonta
   }, [playlist]);
+
+  useEffect(() => {
+    // Si volvemos de la página de perfil y no hay nuevas canciones, evitamos la actualización
+    if (!hasNewSongs) {
+      return;
+    }
+
+    // Lógica adicional para manejar las nuevas canciones según sea necesario
+    // ...
+
+    // Limpia el estado de "hasNewSongs" después de manejar las nuevas canciones
+    setHasNewSongs(false);
+  }, [hasNewSongs]);
 
   const handleVideoEnd = () => {
     setCurrentVideoIndex((prevIndex) => (prevIndex + 1) % playlist.length);
@@ -167,11 +132,15 @@ export const EmployeeMenu = () => {
   };
 
   if (playlist.length === 0) {
-    return <div>Loading...</div>;
+    return (
+      <div className="App_body">
+        <SpinnerLoading />
+      </div>
+    );
   }
 
   const currentVideo = playlist[currentVideoIndex];
-  const currentVideoId = extractVideoId(currentVideo.link);
+  const currentVideoId = currentVideo.link.split("v=")[1];
 
   const handleToggleMenu = () => {
     setMenuVisible(!menuVisible);
@@ -238,8 +207,8 @@ export const EmployeeMenu = () => {
           </NavLink>
           <NavLink
             style={Styles.navItem}
-            type="button"
             to="/"
+            type="button"
             className="menu-item"
             onClick={handleLogout}
           >
@@ -257,7 +226,7 @@ export const EmployeeMenu = () => {
             />
           </div>
           <div className="App_playlist_content">
-            <h2>{currentVideo.title}</h2>
+            <h2>{currentVideo.name}</h2>
             <div className="playlist_buttons">
               <button className="" onClick={handlePrevious}>
                 Anterior
@@ -268,11 +237,10 @@ export const EmployeeMenu = () => {
               <div className="App_playlist_index">
                 {playlist.map((music, index) => (
                   <DraggableItem
-                    key={index}
+                    key={music.id}
                     music={music}
                     index={index}
                     moveItem={moveItem}
-                    extractVideoId={extractVideoId}
                   />
                 ))}
               </div>
