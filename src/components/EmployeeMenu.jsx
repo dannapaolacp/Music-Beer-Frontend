@@ -48,7 +48,7 @@ const DraggableItem = ({ music, index, moveItem }) => {
           </div>
           &emsp;
           <div className="table_name">{music.table_name}</div>
-          <div className="music_name">{music.name}</div>
+          <div className="music_name">{music.name_music}</div>
         </div>
         <div className="second">
           <i className="bi bi-list"></i>

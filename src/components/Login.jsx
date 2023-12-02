@@ -9,6 +9,7 @@ export const Login = () => {
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordVisible, setPasswordVisible] = useState(false);
 
   function logIn(e) {
     e.preventDefault();
@@ -112,12 +113,25 @@ export const Login = () => {
                   </div>
                   <input
                     id="txtpassword"
-                    type="password"
+                    type={passwordVisible ? "text" : "password"}
                     className="form-control"
                     placeholder="contraseña"
                     onChange={(e) => setPassword(e.target.value)}
                     required
                   />
+                  <div className="input-group-append">
+                    <button
+                      className="btn btn-outline-secondary"
+                      type="button"
+                      onClick={() => setPasswordVisible(!passwordVisible)}
+                    >
+                      <i
+                        className={`fas ${
+                          passwordVisible ? "fa-eye-slash" : "fa-eye"
+                        }`}
+                      ></i>
+                    </button>
+                  </div>
                 </div>
                 <div className="form-check remember">
                   <input

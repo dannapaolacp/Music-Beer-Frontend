@@ -13,6 +13,7 @@ export const CustomerMenu = () => {
   const [query, setQuery] = useState("");
   const [videos, setVideos] = useState([]);
   const [videoLink, setVideoLink] = useState("");
+  const [selectedSong, setSelectedSong] = useState(null);
   const [menuVisible, setMenuVisible] = useState(false);
   const [showSendButton, setShowSendButton] = useState(false);
 
@@ -29,33 +30,41 @@ export const CustomerMenu = () => {
             part: "snippet",
             type: "video",
             key: apiKey,
+            maxResults: 10,
           },
         },
       );
 
-      setVideos(response.data.items);
+      const decodedVideos = response.data.items.map((video) => ({
+        ...video,
+        snippet: {
+          ...video.snippet,
+          title: decodeURIComponent(video.snippet.title),
+        },
+      }));
+
+      setVideos(decodedVideos);
       setShowSendButton(true);
     } catch (error) {
       console.error("Error al realizar la búsqueda:", error);
     }
   };
 
-  const handleVideoSelect = (video) => {
-    setVideoLink(`https://www.youtube.com/watch?v=${video.id.videoId}`);
-  };
-
   const handleSend = async () => {
-    console.log(user);
     try {
-      if (videoLink && user) {
+      if (videoLink && user && selectedSong) {
         const requestData = {
           link: videoLink,
+          name_music: videos.find((video) => video.id.videoId === selectedSong)
+            .snippet.title,
           table_name: user,
         };
+
         const response = await axios.post(
           "http://localhost:3001/music",
           requestData,
         );
+
         if (response.status === 201) {
           Swal.fire({
             title: "¡La música se envió correctamente!",
@@ -73,6 +82,16 @@ export const CustomerMenu = () => {
             response.status,
           );
         }
+
+        // Limpiar la selección después de enviar
+        setVideoLink("");
+        setSelectedSong(null);
+      } else {
+        Swal.fire({
+          icon: "info",
+          title: "Seleccione una canción ",
+          text: "Seleccione una canción para enviar su solicitud",
+        });
       }
     } catch (error) {
       console.error("Error al enviar la solicitud al backend:", error);
@@ -80,35 +99,14 @@ export const CustomerMenu = () => {
   };
 
   const handleCheckboxSelect = (video) => {
-    if (videoLink && user) {
-      const requestData = {
-        link: `https://www.youtube.com/watch?v=${video.id.videoId}`,
-        table_name: user,
-      };
-      axios
-        .post("http://localhost:3001/music", requestData)
-        .then((response) => {
-          if (response.status === 201) {
-            Swal.fire({
-              title: "¡La música se envió correctamente!",
-              width: 500,
-              height: 200,
-              padding: "3em",
-              color: "aqua",
-              background: "#fff url(/images/beer.gif)",
-              confirmButtonColor: "aqua",
-              confirmButtonTextColor: "white",
-            });
-          } else {
-            console.log(
-              "Error al enviar la música. Código de respuesta:",
-              response.status,
-            );
-          }
-        })
-        .catch((error) => {
-          console.error("Error al enviar la solicitud al backend:", error);
-        });
+    if (selectedSong === video.id.videoId) {
+      // Deseleccionar si ya estaba seleccionado
+      setVideoLink("");
+      setSelectedSong(null);
+    } else {
+      // Seleccionar la canción
+      setVideoLink(`https://www.youtube.com/watch?v=${video.id.videoId}`);
+      setSelectedSong(video.id.videoId);
     }
   };
 
@@ -191,22 +189,14 @@ export const CustomerMenu = () => {
             </div>
           </div>
           <div className="Results">
-            {showSendButton && (
-              <div className="Send_button">
-                <input
-                  type="button"
-                  value="Enviar"
-                  className="btn btn-primary btn_send"
-                  onClick={handleSend}
-                />
-              </div>
-            )}
             <div className="Video_list">
               {videos.map((video) => (
                 <div
                   key={video.id.videoId}
-                  className="Video_item"
-                  onClick={() => handleVideoSelect(video)}
+                  className={`Video_item ${
+                    selectedSong === video.id.videoId ? "selected" : ""
+                  }`}
+                  onClick={() => handleCheckboxSelect(video)}
                 >
                   <div className="video_img">
                     <img
@@ -220,15 +210,26 @@ export const CustomerMenu = () => {
                   <div className="video_select">
                     <input
                       type="checkbox"
-                      id="mi-checkbox"
-                      name="mi-checkbox"
-                      value="opcion1"
+                      id={`checkbox-${video.id.videoId}`}
+                      name={`checkbox-${video.id.videoId}`}
+                      value={`opcion-${video.id.videoId}`}
+                      checked={selectedSong === video.id.videoId}
                       onChange={() => handleCheckboxSelect(video)}
                     />
                   </div>
                 </div>
               ))}
             </div>
+            {showSendButton && (
+              <div className="Send_button">
+                <input
+                  type="button"
+                  value="Enviar"
+                  className="btn btn-primary btn_send"
+                  onClick={handleSend}
+                />
+              </div>
+            )}
           </div>
         </div>
       </div>
