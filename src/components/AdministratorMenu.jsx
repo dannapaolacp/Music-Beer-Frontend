@@ -125,6 +125,7 @@ export const AdministratorMenu = () => {
 
   const handleToggleMenu = () => {
     setMenuVisible(!menuVisible);
+    setSubMenuVisible(false);
   };
 
   const handleToggleSubMenu = () => {
@@ -213,6 +214,7 @@ export const AdministratorMenu = () => {
           </div>
           <div
             className={`submenu-dropdown ${subMenuVisible ? "visible" : ""}`}
+            onClick={() => setSubMenuVisible(false)}
           >
             <Link
               style={Styles.navItem}

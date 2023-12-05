@@ -118,6 +118,12 @@ export const CustomerMenu = () => {
     console.log("Cerrar sesión...");
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  };
+
   const Styles = {
     navItem: {
       textDecoration: "none",
@@ -179,6 +185,7 @@ export const CustomerMenu = () => {
                   placeholder="Busca tu música"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
+                  onKeyPress={handleKeyPress}
                 />
               </div>
               <div className="search_btn">

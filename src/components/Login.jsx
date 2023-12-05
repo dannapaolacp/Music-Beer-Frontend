@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "../css/loginStyles.css";
 import "bootstrap/dist/css/bootstrap.css";
 import axios from "axios";
@@ -10,13 +10,28 @@ export const Login = () => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
+
+
+  useEffect(() => {
+    const storedUsername = localStorage.getItem("username");
+    const storedPassword = localStorage.getItem("password");
+    const storedRememberMe = localStorage.getItem("rememberMe");
+
+    if (storedRememberMe && storedRememberMe === "true") {
+      setName(storedUsername || "");
+      setPassword(storedPassword || "");
+      setRememberMe(true);
+      document.getElementById("txtuser").value = storedUsername || "";
+      document.getElementById("txtpassword").value = storedPassword || "";
+    }
+  }, []);
 
   function logIn(e) {
     e.preventDefault();
     let txtuser = document.getElementById("txtuser").value;
     let txtpassword = document.getElementById("txtpassword").value;
-    console.log(name);
-    console.log(password);
+
     if (txtuser.length === 0 || txtpassword.length === 0) {
       Swal.fire({
         icon: "error",
@@ -32,13 +47,16 @@ export const Login = () => {
       axios
         .post("http://localhost:3001/login", data)
         .then((response) => {
-          // Haz lo que necesites con la respuesta, por ejemplo, actualizar el estado
+          if (rememberMe) {
+            localStorage.setItem("username", name);
+            localStorage.setItem("password", password);
+            localStorage.setItem("rememberMe", "true");
+          } else {
+            localStorage.removeItem("username");
+            localStorage.removeItem("password");
+            localStorage.removeItem("rememberMe");
+          }
 
-          console.log(response.data);
-
-          console.log(response.data.rol);
-
-          // Maneja la respuesta del servidor aquí
           if (response.data.rol === 1) {
             document.getElementById("container").style.display = "none";
             navigate(`/AdministratorMenu/${name}`);
@@ -49,7 +67,7 @@ export const Login = () => {
             document.getElementById("container").style.display = "none";
             navigate(`/CustomerMenu/${name}`);
           }
-          console.log("Successful login: ", response.status);
+
           Swal.fire({
             position: "top-end",
             icon: "success",
@@ -59,12 +77,8 @@ export const Login = () => {
           });
         })
         .catch((error) => {
-          console.error("Error al iniciar sesión:", error);
-          // Maneja errores, como mostrar un mensaje de error al usuario
+
           if (error.response) {
-            // Aquí puedes acceder a la respuesta detallada
-            console.log("Código de estado HTTP:", error.response.status);
-            console.log("Respuesta del servidor:", error.response.data);
             if (error.response.status === 404) {
               document.getElementById("txtuser").value = "";
               document.getElementById("txtpassword").value = "";
@@ -137,6 +151,8 @@ export const Login = () => {
                   <input
                     className="form-check-input remember_input"
                     type="checkbox"
+                    checked={rememberMe}
+                    onChange={(e) => setRememberMe(e.target.checked)}
                   />
                   Recordarme
                 </div>
